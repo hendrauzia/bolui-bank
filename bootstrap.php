@@ -1,5 +1,10 @@
 <?php
-// INFO: define constants to be used accross application 
+session_start();
+
+// INFO: define constants to be used accross application.
+define('APP_NAME', 'bolui');
+
+// INFO: define application paths constants.
 define('ROOT', dirname(__FILE__) . '/');
 define('APP', ROOT . 'app/');
 define('CONFIG', ROOT . 'config/');
