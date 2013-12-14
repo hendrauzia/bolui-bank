@@ -2,6 +2,7 @@
 // INFO: define constants to be used accross application 
 define('ROOT', dirname(__FILE__) . '/');
 define('APP', ROOT . 'app/');
+define('CONFIG', ROOT . 'config/');
 define('LIB', ROOT . 'lib/');
 define('CONTROLLERS', APP . 'controllers/');
 define('VIEWS', APP . 'views/');
