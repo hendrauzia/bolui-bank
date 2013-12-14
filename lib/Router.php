@@ -79,7 +79,8 @@ class Router
     // INFO: generate path if static method name ends with _path
     if ($parts[2] == 'path') {
       // TODO: Generate REST path
-      if (!REST) return "index.php?controller=" . $parts[0] . "&action=" . $parts[1];
+      // TODO: Refactor and merge with Router::path_of()
+      if (!self::REST) return "index.php?controller=" . $parts[0] . "&action=" . $parts[1];
     }
   }
 }
