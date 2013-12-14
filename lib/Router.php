@@ -63,19 +63,6 @@ class Router
   }
 
   /**
-   * Generate route
-   *
-   * @param string $controller
-   * @param string $action
-   *
-   * @return string Routes
-   */
-  private static function route_of($controller, $action)
-  {
-    return $controller . "#" . $action;
-  }
-
-  /**
    * Triggered when invoking inaccessible method in a static context.
    *
    * This function mainly used to generate url routes with function ends with _path,
@@ -97,5 +84,18 @@ class Router
       // TODO: Generate REST path
       return self::path_of(self::route_of($controller, $action));
     }
+  }
+
+  /**
+   * Generate route
+   *
+   * @param string $controller
+   * @param string $action
+   *
+   * @return string Routes
+   */
+  private static function route_of($controller, $action)
+  {
+    return $controller . "#" . $action;
   }
 }
