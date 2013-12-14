@@ -16,4 +16,5 @@ spl_autoload_register(function($class){
   if (file_exists(CONTROLLERS . $file_name)) require_once CONTROLLERS . $file_name;
 });
 
-Router::dispatch();
+// INFO: Initialize application
+Application::initialize();
