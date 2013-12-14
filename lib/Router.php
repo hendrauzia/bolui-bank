@@ -47,6 +47,23 @@ class Router
   }
 
   /**
+   * Return path of provided route.
+   * 
+   * @param string $route Route in format 'controller#action'
+   *
+   * @return string
+   *
+   * @todo Generate REST path.
+   */
+  public static function path_of($route) {
+    list($controller, $action) = explode('#', $route);
+
+    // TODO: Generate REST path
+    // TODO: Refactor and merge with Router::__callStatic()
+    if (!self::REST) return "index.php?controller=" . $controller . "&action=" . $action;
+  }
+
+  /**
    * Generate route
    *
    * @param string $controller
