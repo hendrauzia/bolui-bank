@@ -18,7 +18,7 @@ class Router
   public static function dispatch()
   {
     // WARNING: Do not use extract($_GET), it will expose security vulnerabilities
-    $route = self::currentRoute();
+    $route = self::current_route();
     $controller_name = ucfirst($_GET['controller']) . "Controller";
     $action_name = strtolower($_GET['action']);
 
@@ -41,7 +41,7 @@ class Router
    *
    * @return string
    */
-  public static function currentRoute()
+  public static function current_route()
   {
     return self::route_of($_GET['controller'], $_GET['action']);
   }

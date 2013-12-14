@@ -38,7 +38,7 @@ class Controller
     if (file_exists($action_view_path)) {
       include $action_view_path;
     } else {
-      throw new ViewNotFound(Router::currentRoute());
+      throw new ViewNotFound(Router::current_route());
     }
   }
 }

@@ -7,11 +7,9 @@ class RouteNotFound extends Exception
   /**
    * Redefine the exception so message isn't optional.
    *
-   * @param string $route Route generated from Router::currentRoute()
+   * @param string $route Route in format 'controller#action'
    * @param int $code Error code for the exception
    * @param Exception $previous Previous nested exception
-   *
-   * @see Router::currentRoute() for how routes are generated.
    *
    * @return void
    */
