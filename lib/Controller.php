@@ -32,6 +32,9 @@ class Controller
   {
     $prefix = strstr(get_class($this), __CLASS__, true);
     $controller_view_path = VIEWS . strtolower($prefix) . '/';
+
+    // WARNING: 'neu' only used in function name, view name uses 'new'.
+    if ($name == 'neu') $name = 'new';
     $action_view_path = $controller_view_path . $name . '.php';
 
     // TODO: Wrap view in application layout.
