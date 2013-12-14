@@ -19,8 +19,8 @@ class Router
   {
     // WARNING: Do not use extract($_GET), it will expose security vulnerabilities
     $route = self::currentRoute();
-  	$controller_name = ucfirst($_GET['controller']) . "Controller";
-  	$action_name = strtolower($_GET['action']);
+    $controller_name = ucfirst($_GET['controller']) . "Controller";
+    $action_name = strtolower($_GET['action']);
 
   	// WARNING: php do not support "new" as identifier, use neu (new in German) instead
   	if ($action_name == "new") $action_name = "neu";
