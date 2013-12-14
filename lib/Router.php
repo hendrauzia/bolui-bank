@@ -59,7 +59,6 @@ class Router
     list($controller, $action) = explode('#', $route);
 
     // TODO: Generate REST path
-    // TODO: Refactor and merge with Router::__callStatic()
     if (!self::REST) return "index.php?controller=" . $controller . "&action=" . $action;
   }
 
@@ -91,13 +90,12 @@ class Router
    */
   public static function __callStatic($name, $arguments)
   {
-    $parts = explode('_', $name);
+    list($controller, $action, $suffix) = explode('_', $name);
 
-    // INFO: generate path if static method name ends with _path
-    if ($parts[2] == 'path') {
+    // INFO: generate path if static method $name ends with _path
+    if ($suffix == 'path') {
       // TODO: Generate REST path
-      // TODO: Refactor and merge with Router::path_of()
-      if (!self::REST) return "index.php?controller=" . $parts[0] . "&action=" . $parts[1];
+      return self::path_of(self::routify($controller, $action));
     }
   }
 }
