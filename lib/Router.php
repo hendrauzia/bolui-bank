@@ -66,10 +66,10 @@ class Router
    * Triggered when invoking inaccessible method in a static context.
    *
    * This function mainly used to generate url routes with function ends with _path,
-   * such as call to Router::sessions_new_path() will generate url to path of new sessions.
+   * such as call to Router::new_sessions_path() will generate url to path of new sessions.
    *
-   * @param string $name Static method name
-   * @param mixed[] $arguments Static method arguments in array
+   * @param string $name Static method name in format action_controller_path.
+   * @param mixed[] $arguments Static method arguments in array.
    *
    * @return string Generated path
    *
@@ -77,7 +77,7 @@ class Router
    */
   public static function __callStatic($name, $arguments)
   {
-    list($controller, $action, $suffix) = explode('_', $name);
+    list($action, $controller, $suffix) = explode('_', $name);
 
     // INFO: generate path if static method $name ends with _path
     if ($suffix == 'path') {
