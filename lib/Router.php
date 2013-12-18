@@ -17,15 +17,18 @@ class Router
    */
   public static function dispatch()
   {
-    // WARNING: Do not use extract($_GET), it will expose security vulnerabilities
+    // WARNING: Do not use extract($_GET), it will expose security vulnerabilities.
     $route = self::current_route();
     $controller_name = ucfirst($_GET['controller']) . "Controller";
     $action_name = strtolower($_GET['action']);
 
-  	// WARNING: php do not support "new" as identifier, use neu (new in German) instead
+  	// WARNING: php forbid "new" as identifier, use neu (new in German) instead.
   	if ($action_name == "new") $action_name = "neu";
 
-    // INFO: make sure provided controller and action exist
+    // INFO: default to action index if no action name in param.
+    if (empty($action_name)) $action_name = "index";
+
+    // INFO: make sure provided controller and action exist.
     if (method_exists($controller_name, $action_name)) {
       $controller = new $controller_name();
       $controller->$action_name();        
@@ -58,8 +61,11 @@ class Router
   public static function path_of($route) {
     list($controller, $action) = explode('#', $route);
 
+    $param = "controller=" . $controller;
+    if ($action) $param .= "&action=" . $action;
+
     // TODO: Generate REST path
-    if (!self::REST) return "index.php?controller=" . $controller . "&action=" . $action;
+    if (!self::REST) return "index.php?" . $param;
   }
 
   /**
@@ -67,6 +73,11 @@ class Router
    *
    * This function mainly used to generate url routes with function ends with _path,
    * such as call to Router::new_sessions_path() will generate url to path of new sessions.
+   *
+   * Usage:
+   * Router::new_sessions_path()
+   * Router::index_accounts_path()
+   * Router::accounts_path() is the same as Router::index_accounts_path()
    *
    * @param string $name Static method name in format action_controller_path.
    * @param mixed[] $arguments Static method arguments in array.
@@ -77,7 +88,7 @@ class Router
    */
   public static function __callStatic($name, $arguments)
   {
-    list($action, $controller, $suffix) = explode('_', $name);
+    list($suffix, $controller, $action) = array_reverse(explode('_', $name));
 
     // INFO: generate path if static method $name ends with _path
     if ($suffix == 'path') {
@@ -89,13 +100,16 @@ class Router
   /**
    * Generate route
    *
-   * @param string $controller
-   * @param string $action
+   * @param string $controller Controller name.
+   * @param mixed $action Action name, optional.
    *
-   * @return string Routes
+   * @return string Route name in string.
    */
-  private static function route_of($controller, $action)
+  private static function route_of($controller, $action = null)
   {
-    return $controller . "#" . $action;
+    $route = $controller;
+    if (!empty($action)) $route .= "#" . $action;
+
+    return $route;
   }
 }
