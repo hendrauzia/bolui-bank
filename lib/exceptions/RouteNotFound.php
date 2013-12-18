@@ -14,7 +14,7 @@ class RouteNotFound extends Exception
    * @return void
    */
   public function __construct($route, $code = 0, Exception $previous = null) {
-    $message = 'Route not found for "' . $route . '"';
+    $message = 'Route "' . $route . '" not found';
     parent::__construct($message, $code, $previous);
   }
 }
