@@ -12,6 +12,7 @@ define('LIB', ROOT . 'lib/');
 define('CONTROLLERS', APP . 'controllers/');
 define('MODELS', APP . 'models/');
 define('VIEWS', APP . 'views/');
+define('LAYOUTS', VIEWS . 'layouts/');
 define('EXCEPTIONS', LIB . 'exceptions/');
 
 // INFO: autoload classes safely

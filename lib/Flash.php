@@ -17,7 +17,7 @@ class Flash
    *
    * @return mixed Return string if exist, null if don't.
    */
-  static public function get($key)
+  public static function get($key)
   {
     return $_SESSION[APP_NAME][self::KEY]['now'][$key] ?: null;
   }
@@ -30,7 +30,7 @@ class Flash
    *
    * @return void
    */
-  static public function set($key, $value)
+  public static function set($key, $value)
   {
     $_SESSION[APP_NAME][self::KEY]['next'][$key] = $value;
   }
@@ -40,7 +40,7 @@ class Flash
    *
    * @return void
    */
-  static public function cycle()
+  public static function cycle()
   {
     $_SESSION[APP_NAME][self::KEY]['now'] = $_SESSION[APP_NAME][self::KEY]['next'];
     unset($_SESSION[APP_NAME][self::KEY]['next']);
@@ -51,7 +51,7 @@ class Flash
    *
    * @return void
    */
-  static public function flush()
+  public static function flush()
   {
     unset($_SESSION[APP_NAME][self::KEY]['now']);
   }

@@ -14,7 +14,7 @@ class ViewNotFound extends Exception
    * @return void
    */
   public function __construct($route, $code = 0, Exception $previous = null) {
-    $message = 'View not found for route "' . $route . '"';
+    $message = 'View not found on route "' . $route . '"';
     parent::__construct($message, $code, $previous);
   }
 }
